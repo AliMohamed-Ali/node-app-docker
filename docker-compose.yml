@@ -2,6 +2,7 @@ version: '3'
 services:
   node-app:
     container_name: node-express-container
+    image: ali3lsayed/node-app-docker
     ports:
       - "4000:4000"
     env_file:
