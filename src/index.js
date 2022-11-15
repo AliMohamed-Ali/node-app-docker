@@ -50,7 +50,7 @@ mongoose.connect(URI)
 
 app.get('/',(req,res)=>{
     redisClient.set("products","products.....")
-    res.json("welcom to my app !!js")
+    res.send("<h1>Hello in AWS</h1>")
 })
 
 app.get('/data',async(req,res)=>{
