@@ -9,8 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 //connect to redis 
-const REDIS_PORT='6379';
-const REDIS_HOST = "redis";
+const REDIS_PORT=process.env.REDIS_PORT;
+const REDIS_HOST = process.env.REDIS_HOST;
 const redisClient = redis.createClient({
     url: `redis://${REDIS_HOST}:${REDIS_PORT}`
 });
@@ -38,11 +38,11 @@ redisClient.connect();
 
 
 
-const USERNAME = "root"
-const PASSWORD = "example"
-const DB_PORT ="27017"
-const DB_HOST = "mongo"
-const URI =`mongodb://${USERNAME}:${PASSWORD}@${DB_HOST}:${DB_PORT}`
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD
+const DB_PORT = process.env.DB_PORT
+const DB_HOST =  process.env.DB_HOST
+const URI =`mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}`
 mongoose.connect(URI)
 .then(()=>console.log("db connection ...."))
 .catch(err=>console.log(`fail to connection ....` , err));
@@ -58,3 +58,5 @@ app.get('/data',async(req,res)=>{
     res.send(`<h1>Hell baby</h1><h2>${products}</h2>`)
 })
 app.listen(PORT,()=>console.log(`app is up and run on port:${PORT}`))
+
+
